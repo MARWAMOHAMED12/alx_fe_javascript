@@ -1,0 +1,23 @@
+# DOM Manipulation Project
+
+This project demonstrates various techniques for manipulating the Document Object Model (DOM) using JavaScript.
+
+## Features
+
+- Selecting and modifying DOM elements
+- Handling user events
+- Creating and removing elements dynamically
+
+## Getting Started
+
+1. Clone the repository.
+2. Open the HTML file in your browser.
+3. Explore the JavaScript code to see DOM manipulation in action.
+
+## Requirements
+
+- Basic knowledge of HTML, CSS, and JavaScript
+
+## License
+
+This project is licensed under the MIT License.
