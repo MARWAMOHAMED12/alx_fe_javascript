@@ -1,32 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dynamic Quote Generator</title>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
+  <!-- مكان عرض الاقتباس -->
   <div id="quoteDisplay"></div>
+
+  <!-- زرار عرض اقتباس عشوائي -->
   <button id="newQuote">Show New Quote</button>
 
+  <!-- نموذج إضافة اقتباس جديد -->
   <div>
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
     <button onclick="addQuote()">Add Quote</button>
   </div>
 
+  <!-- ربط ملف جافاسكريبت -->
   <script src="script.js"></script>
 </body>
 </html>
-<!-- Checklist for requirements -->
-<!-- 
-1. Check if script.js exists in the same directory.
-2. Check if quotes array exists in script.js with objects containing text and category.
-3. Check if displayRandomQuote function exists in script.js.
-4. Check if logic to select a random quote and update #quoteDisplay exists in script.js.
-5. Check if addQuote function exists in script.js.
-6. Check if logic to add a new quote to the quotes array and update #quoteDisplay exists in script.js.
-7. Check if event listener on #newQuote button exists in script.js.
--->
