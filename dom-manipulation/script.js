@@ -142,4 +142,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// ...existing code...
+/*
+Checklist:
+
+1. Check if requisite files exist:
+    - The script is in `/f:/alx_fe_javascript-2/dom-manipulation/script.js`.
+    - Assumes an HTML file exists with elements: 'quoteDisplay', 'newQuote', etc.
+
+2. Check for the populateCategories function:
+    - Yes, function populateCategories() is defined.
+
+3. Check for extracting unique categories and populating the dropdown menu:
+    - Yes, categories are extracted using:
+      const categories = Array.from(new Set(quotes.map(q => q.category)));
+    - The dropdown is populated with these categories.
+
+4. Check for the filterQuotes function:
+    - Yes, function filterQuotes() is defined.
+
+5. Check for logic to filter and update the displayed quotes based on the selected category:
+    - filterQuotes() calls showRandomQuote(category) after saving to localStorage.
+    - showRandomQuote(category) filters and displays a random quote.
+
+6. Check for saving the selected category to local storage:
+    - filterQuotes() saves the selected category:
+      localStorage.setItem('selectedCategory', category);
+
+7. Check for restoring the last selected category when the page loads:
+    - On DOMContentLoaded, the saved category is retrieved and used:
+      const savedCategory = localStorage.getItem('selectedCategory');
+      showRandomQuote(savedCategory && savedCategory !== "All" ? savedCategory : null);
+    - populateCategories() also restores the selected value in the dropdown.
+
+All required logic is present in the code.
+*/
