@@ -1,38 +1,48 @@
-// مصفوفة من الاقتباسات، كل واحدة عبارة عن نص ونوع
-let quotes = [
-  { text: "Be yourself; everyone else is already taken.", category: "Inspiration" },
-  { text: "So many books, so little time.", category: "Books" },
-  { text: "No one can make you feel inferior without your consent.", category: "Motivation" }
+const quotes = [
+    { text: "The only way to do great work is to love what you do.", category: "Motivation" },
+    { text: "Life is what happens when you're busy making other plans.", category: "Life" },
+    { text: "Success is not in what you have, but who you are.", category: "Success" }
 ];
 
-// وظيفة لعرض اقتباس عشوائي
+// Function to display a random quote
 function showRandomQuote() {
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  const quote = quotes[randomIndex];
-
-  // نحدث الـ DOM علشان نعرض الاقتباس
-  document.getElementById("quoteDisplay").innerText = `"${quote.text}" - ${quote.category}`;
+    const container = document.getElementById('quote-container');
+    if (!container) return;
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const quote = quotes[randomIndex];
+    container.innerHTML = `
+        <blockquote>${quote.text}</blockquote>
+        <p><em>Category: ${quote.category}</em></p>
+    `;
 }
 
-// لما المستخدم يضغط زرار Show New Quote، نشغل الوظيفة
-document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+// Function to create and display the add-quote form
+function createAddQuoteForm() {
+    const formContainer = document.getElementById('form-container');
+    if (!formContainer) return;
 
-// وظيفة لإضافة اقتباس جديد
-function addQuote() {
-  const text = document.getElementById("newQuoteText").value;
-  const category = document.getElementById("newQuoteCategory").value;
+    formContainer.innerHTML = `
+        <form id="add-quote-form">
+            <input type="text" id="quote-text" placeholder="Quote text" required />
+            <input type="text" id="quote-category" placeholder="Category" required />
+            <button type="submit">Add Quote</button>
+        </form>
+    `;
 
-  if (text && category) {
-    // نضيف الاقتباس للمصفوفة
-    quotes.push({ text, category });
-
-    // ننضف الـ inputs
-    document.getElementById("newQuoteText").value = "";
-    document.getElementById("newQuoteCategory").value = "";
-
-    // نعرض رسالة للمستخدم
-    alert("Quote added successfully!");
-  } else {
-    alert("Please enter both quote text and category.");
-  }
+    document.getElementById('add-quote-form').onsubmit = function(e) {
+        e.preventDefault();
+        const text = document.getElementById('quote-text').value.trim();
+        const category = document.getElementById('quote-category').value.trim();
+        if (text && category) {
+            quotes.push({ text, category });
+            showRandomQuote();
+            this.reset();
+        }
+    };
 }
+
+// Example usage: call these functions after DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    showRandomQuote();
+    createAddQuoteForm();
+});
