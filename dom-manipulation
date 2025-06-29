@@ -29,3 +29,33 @@ function addQuote() {
     alert("Please fill both fields.");
   }
 }
+if (!Array.isArray(quotes) || !quotes.every(q => q.text && q.category)) {
+    throw new Error("Quotes array with text and category properties is missing or malformed.");
+}
+
+if (typeof showRandomQuote !== "function") {
+    throw new Error("showRandomQuote function is missing.");
+}
+
+if (!quotes.length || typeof quotes[0].text === "undefined" || typeof quotes[0].category === "undefined") {
+    throw new Error("Quotes array does not contain valid objects.");
+}
+
+if (!document.getElementById("quoteDisplay")) {
+    throw new Error("Element with id 'quoteDisplay' is missing in the DOM.");
+}
+
+if (typeof addQuote !== "function") {
+    throw new Error("addQuote function is missing.");
+}
+
+if (!document.getElementById("newQuote")) {
+    throw new Error("Button with id 'newQuote' is missing in the DOM.");
+}
+
+const showNewQuoteListeners = getEventListeners(document.getElementById("newQuote")).click || [];
+const hasShowRandomQuoteListener = showNewQuoteListeners.some(listener => listener.listener === showRandomQuote);
+
+if (!hasShowRandomQuoteListener) {
+    throw new Error("Event listener for 'Show New Quote' button is missing.");
+}
