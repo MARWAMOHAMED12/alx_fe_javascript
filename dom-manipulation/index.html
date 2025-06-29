@@ -14,6 +14,11 @@
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
     <button onclick="addQuote()">Add Quote</button>
   </div>
+  <select id="categoryFilter" onchange="filterQuotes()">
+  <option value="all">All Categories</option>
+  <!-- هنا هيتضاف الأنواع تلقائيًا -->
+</select>
+
     <script src="script.js"></script>
   </body>
   </html>
