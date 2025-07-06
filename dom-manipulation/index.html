@@ -18,6 +18,16 @@
   <option value="all">All Categories</option>
   <!-- هنا هيتضاف الأنواع تلقائيًا -->
 </select>
+<div id="quoteContainer">Your quote will appear here</div>
+
+<input type="text" id="newQuote" placeholder="Enter a new quote">
+<button onclick="addQuote(document.getElementById('newQuote').value)">Add Quote</button>
+
+<br><br>
+
+<button onclick="exportToJsonFile()">Export Quotes</button>
+
+<input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)">
 
     <script src="script.js"></script>
   </body>
