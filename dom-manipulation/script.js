@@ -176,3 +176,91 @@ document.addEventListener('DOMContentLoaded', () => {
   populateCategories();
   filterQuotes();
 });
+
+let quotes = [];
+let selectedCategory = 'all';
+
+// Load from localStorage
+function loadQuotes() {
+  const storedQuotes = localStorage.getItem('quotes');
+  if (storedQuotes) {
+    quotes = JSON.parse(storedQuotes);
+  }
+
+  const storedCategory = localStorage.getItem('selectedCategory');
+  if (storedCategory) {
+    selectedCategory = storedCategory;
+    document.getElementById('categoryFilter').value = storedCategory;
+  }
+}
+
+// Save quotes
+function saveQuotes() {
+  localStorage.setItem('quotes', JSON.stringify(quotes));
+}
+
+// Save selected category
+function saveSelectedCategory(category) {
+  localStorage.setItem('selectedCategory', category);
+}
+
+// Populate category filter options
+function populateCategories() {
+  const filter = document.getElementById('categoryFilter');
+  const categories = ['all', ...new Set(quotes.map(q => q.category))];
+
+  filter.innerHTML = '';
+  categories.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat;
+    filter.appendChild(option);
+  });
+
+  filter.value = selectedCategory;
+}
+
+// Add a quote with category
+function addQuote(text, category) {
+  if (!text || !category) {
+    alert('Enter both quote and category');
+    return;
+  }
+
+  const newQuote = { text, category };
+  quotes.push(newQuote);
+  saveQuotes();
+  populateCategories();
+  filterQuotes();
+}
+
+// Filter quotes and update display
+function filterQuotes() {
+  const category = document.getElementById('categoryFilter').value;
+  selectedCategory = category;
+  saveSelectedCategory(category);
+
+  const display = document.getElementById('quoteDisplay');
+  display.innerHTML = '';
+
+  const filtered = category === 'all'
+    ? quotes
+    : quotes.filter(q => q.category === category);
+
+  if (filtered.length === 0) {
+    display.textContent = 'No quotes in this category.';
+    return;
+  }
+
+  // Display random quote from filtered list
+  const randomIndex = Math.floor(Math.random() * filtered.length);
+  const quote = filtered[randomIndex];
+  display.textContent = `"${quote.text}" — [${quote.category}]`;
+}
+
+// On page load
+document.addEventListener('DOMContentLoaded', () => {
+  loadQuotes();
+  populateCategories();
+  filterQuotes();
+});
