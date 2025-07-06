@@ -18,16 +18,22 @@
   <option value="all">All Categories</option>
   <!-- هنا هيتضاف الأنواع تلقائيًا -->
 </select>
-<div id="quoteContainer">Your quote will appear here</div>
+<div>
+  <input type="text" id="quoteInput" placeholder="Enter quote">
+  <input type="text" id="categoryInput" placeholder="Enter category">
+  <button onclick="addQuote()">Add Quote</button>
+</div>
 
-<input type="text" id="newQuote" placeholder="Enter a new quote">
-<button onclick="addQuote(document.getElementById('newQuote').value)">Add Quote</button>
+<br>
+
+<select id="categoryFilter" onchange="filterQuotes()">
+  <option value="all">All Categories</option>
+</select>
 
 <br><br>
 
-<button onclick="exportToJsonFile()">Export Quotes</button>
+<ul id="quoteList"></ul>
 
-<input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)">
 
     <script src="script.js"></script>
   </body>
